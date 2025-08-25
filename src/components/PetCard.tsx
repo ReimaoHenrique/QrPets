@@ -1,11 +1,11 @@
 import Image from "next/image";
-import QRCodeDisplay from "./QRCodeDisplay";
 import styles from "../styles/PetCard.module.css";
 
 interface PetCardProps {
   id: string;
   name: string;
   photoUrl: string;
+  photoComponent?: string[];
   weight: string;
   age: string;
   breed: string;
@@ -52,7 +52,10 @@ export default function PetCard({
           <strong>Peso:</strong> {weight}
         </p>
         <p>
-          <strong>Contato:</strong> {email} | {phone}
+          <strong>Email:</strong> {email}
+        </p>
+        <p>
+          <strong>Telefone:</strong> {phone}
         </p>
         <p>
           <strong>Endereço:</strong> {address}

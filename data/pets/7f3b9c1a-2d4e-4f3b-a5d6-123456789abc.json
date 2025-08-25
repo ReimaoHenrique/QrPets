@@ -2,12 +2,20 @@
   "id": "7f3b9c1a-2d4e-4f3b-a5d6-123456789abc",
   "name": "Tea",
   "photoUrl": "/images/tea.jpeg",
+  "photoComponent": [
+    "/images/tea.jpeg",
+    "/images/tea.jpeg",
+    "/images/tea.jpeg",
+    "/images/tea4jpeg",
+    "/images/tea.jpeg"
+  ],
   "weight": "7kg",
   "age": "4 anos",
-  "breed": "Mine Labrador",
+  "breed": "Mini Border Collie",
   "email": "Henrique.reimao@outlook.com",
   "phone": "(71)92076895",
   "address": "Rua Dr boreal- costa azul",
   "notes": "Fofa",
-  "themeColor": "#FF6F00"
+  "themeColor": "#FF6F00",
+  "actionLabel": "Ver mais"
 }
