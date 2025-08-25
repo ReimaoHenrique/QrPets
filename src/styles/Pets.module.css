@@ -1,0 +1,21 @@
+.container {
+  padding: 2rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* Ensures the link takes up the card's space for hover effects */
+}

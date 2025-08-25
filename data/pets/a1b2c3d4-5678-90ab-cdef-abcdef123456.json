@@ -1,0 +1,13 @@
+{
+  "id": "a1b2c3d4-5678-90ab-cdef-abcdef123456",
+  "name": "Bella",
+  "photoUrl": "/images/bella.jpg",
+  "weight": "8kg",
+  "age": "2 anos",
+  "breed": "Poodle",
+  "email": "dona@exemplo.com",
+  "phone": "8765-4321",
+  "address": "Avenida dos Pets, 456",
+  "notes": "Gosta de passear de manhã",
+  "themeColor": "#FF6F00"
+}

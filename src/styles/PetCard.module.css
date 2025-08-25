@@ -1,0 +1,44 @@
+.card {
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 320px;
+  margin: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.photo {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+
+.info p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.info strong {
+  color: #333;
+}
+
+.notes {
+  background-color: var(--light-gray);
+  padding: 0.8rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  font-style: italic;
+}

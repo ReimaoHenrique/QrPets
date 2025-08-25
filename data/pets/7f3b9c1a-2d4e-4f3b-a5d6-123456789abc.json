@@ -1,0 +1,13 @@
+{
+  "id": "7f3b9c1a-2d4e-4f3b-a5d6-123456789abc",
+  "name": "Rex",
+  "photoUrl": "/images/rex.jpg",
+  "weight": "12kg",
+  "age": "3 anos",
+  "breed": "Labrador",
+  "email": "dono@exemplo.com",
+  "phone": "1234-5678",
+  "address": "Rua do Pet, 123",
+  "notes": "Tomar medicação X às 18h",
+  "themeColor": "#FF6F00"
+}
