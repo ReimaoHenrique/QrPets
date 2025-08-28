@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import { useState } from "react";
 import ContactCheck from "../../components/ContactCheck";
+import styles from "./uuid.module.css";
 
 interface Pet {
   id: string;
@@ -33,11 +34,7 @@ export default function PetProfile({ pet }: Props) {
   const [activeTab, setActiveTab] = useState("info");
 
   if (!pet) {
-    return (
-      <p style={{ textAlign: "center", marginTop: "2rem" }}>
-        Pet não encontrado 😿
-      </p>
-    );
+    return <p className={styles.notFound}>Pet não encontrado 😿</p>;
   }
 
   return (
@@ -50,7 +47,6 @@ export default function PetProfile({ pet }: Props) {
         />
       </Head>
 
-      {/* ContactCheck centralizado */}
       <ContactCheck
         name={pet.name}
         sex={pet.sex}
@@ -61,83 +57,41 @@ export default function PetProfile({ pet }: Props) {
 
       {/* Fundo e Avatar */}
       <div
-        style={{
-          position: "relative",
-          height: "50vh",
-          width: "100%",
-          backgroundImage: `url(${pet.coverUrl || pet.photoUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className={styles.cover}
+        style={{ backgroundImage: `url(${pet.coverUrl || pet.photoUrl})` }}
       >
-        <img
-          src={pet.photoUrl}
-          alt={pet.name}
-          style={{
-            width: "150px",
-            height: "150px",
-            borderRadius: "50%",
-            border: "5px solid white",
-            position: "absolute",
-            bottom: "-75px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            objectFit: "cover",
-          }}
-        />
+        <img src={pet.photoUrl} alt={pet.name} className={styles.avatar} />
       </div>
 
       {/* Conteúdo */}
-      <div
-        style={{
-          marginTop: "100px",
-          maxWidth: "800px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          fontFamily: "sans-serif",
-        }}
-      >
-        <h1
-          style={{ textAlign: "center", fontSize: "2rem", fontWeight: "bold" }}
-        >
-          {pet.name}
-        </h1>
-        <p style={{ textAlign: "center", color: "gray" }}>
+      <div className={styles.content}>
+        <h1 className={styles.name}>{pet.name}</h1>
+        <p className={styles.subtitle}>
           {pet.breed} • {pet.age}
         </p>
 
         {/* Tabs */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}
-        >
-          {["info", "vet", "photos", "contact"].map((tab) => (
+        <div className={styles.tabs}>
+          {["info", "vet", "contact"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
+              className={`${styles.tab} ${
+                activeTab === tab ? styles.activeTab : ""
+              }`}
               style={{
-                padding: "0.5rem 1rem",
-                backgroundColor: activeTab === tab ? pet.themeColor : "#eee",
-                color: activeTab === tab ? "white" : "black",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
+                backgroundColor: activeTab === tab ? pet.themeColor : undefined,
               }}
             >
               {tab === "info" && "Informações"}
               {tab === "vet" && "Cuidados Veterinários"}
-              {tab === "photos" && "Fotos"}
               {tab === "contact" && "Contato"}
             </button>
           ))}
         </div>
 
         {/* Conteúdo das abas */}
-        <div style={{ marginTop: "2rem" }}>
+        <div className={styles.tabContent}>
           {activeTab === "info" && (
             <div>
               <p>
@@ -153,33 +107,6 @@ export default function PetProfile({ pet }: Props) {
           {activeTab === "vet" && (
             <div>
               {pet.vetCare || "Sem informações de cuidados veterinários."}
-            </div>
-          )}
-
-          {activeTab === "photos" && (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
-                gap: "0.5rem",
-              }}
-            >
-              {pet.photos && pet.photos.length > 0 ? (
-                pet.photos.map((src, idx) => (
-                  <img
-                    key={idx}
-                    src={src}
-                    alt={`Foto ${idx + 1}`}
-                    style={{
-                      width: "100%",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                    }}
-                  />
-                ))
-              ) : (
-                <p>Sem fotos adicionais.</p>
-              )}
             </div>
           )}
 

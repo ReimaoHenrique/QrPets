@@ -1,0 +1,77 @@
+/* src/pages/pets/uuid.module.css */
+
+.cover {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute;
+  bottom: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+}
+
+.content {
+  margin-top: 100px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+}
+
+.name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  text-align: center;
+  color: gray;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 2rem 0 2rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.activeTab {
+  color: white;
+}
+
+.tabContent {
+  margin: 2rem 0 0 2rem;
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px));
+  gap: 0.5rem;
+}
+
+.photo {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
