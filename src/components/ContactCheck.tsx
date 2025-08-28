@@ -1,52 +1,45 @@
 // src/components/ContactCheck.tsx
 import { useState, useEffect } from "react";
+import ContactIcons from "./ContactIcons";
 
 interface ContactCheckProps {
   name: string;
   sex?: "male" | "female"; // male por padrão
   email?: string;
-  phone?: string;
-  address?: string;
+  instagram?: string;
+  whatsapp?: string;
 }
 
 export default function ContactCheck({
   name,
-  sex = "male",
+  sex,
   email,
-  phone,
-  address,
+  instagram,
+  whatsapp,
 }: ContactCheckProps) {
-  const [answeredYes, setAnsweredYes] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [answeredYes, setAnsweredYes] = useState(false);
 
-  // Delay de 75ms para aparecer
+  const pronoun = sex === "female" ? "perdida" : "perdido";
+
+  // Delay de quase 1 segundo pra aparecer a pergunta
   useEffect(() => {
-    const timeout = setTimeout(() => setShowQuestion(true), 75);
-    return () => clearTimeout(timeout);
+    const timer = setTimeout(() => setShowQuestion(true), 75); // 75ms
+    return () => clearTimeout(timer);
   }, []);
 
-  const pronoun =
-    sex === "female" ? "perdida" : sex === "male" ? "perdido" : null;
-
-  if (!showQuestion && !answeredYes) return null;
+  if (!sex) return null; // se não tiver sexo, não pergunta nada
 
   return (
-    <div className="overlay">
-      <div className="contact-check-container">
-        {/* X de fechar */}
-        <button className="close-btn" onClick={() => setShowQuestion(false)}>
-          ×
-        </button>
-
-        {!answeredYes && pronoun ? (
-          <div className="question-box">
+    <>
+      {showQuestion && !answeredYes && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <button className="close" onClick={() => setShowQuestion(false)}>
+              ×
+            </button>
             <p>
-              Eu estou
-              <span>
-                {pronoun}
-                <img className="animal-gif" src="/animal.gif" alt="animal" />
-              </span>
-              ?
+              Eu estou <span>{pronoun}</span>?
             </p>
             <div className="buttons">
               <button className="yes" onClick={() => setAnsweredYes(true)}>
@@ -57,84 +50,45 @@ export default function ContactCheck({
               </button>
             </div>
           </div>
-        ) : answeredYes ? (
-          <div className="contact-box">
-            <h3>Contato do dono de {name}:</h3>
-            <p>
-              <strong>Email:</strong> {email || "-"}
-            </p>
-            <p>
-              <strong>Telefone:</strong> {phone || "-"}
-            </p>
-            <p>
-              <strong>Endereço:</strong> {address || "-"}
-            </p>
-          </div>
-        ) : null}
-      </div>
+        </div>
+      )}
+
+      {answeredYes && (
+        <div className="contact-modal">
+          <ContactIcons
+            email={email}
+            instagram={instagram}
+            whatsapp={whatsapp}
+          />
+        </div>
+      )}
 
       <style jsx>{`
-        .overlay {
+        .modal-overlay {
           position: fixed;
           top: 0;
           left: 0;
           width: 100vw;
           height: 100vh;
+          background-color: rgba(0, 0, 0, 0.5);
           display: flex;
-          justify-content: center;
           align-items: center;
-          background-color: rgba(0, 0, 0, 0.6);
-          z-index: 9999;
+          justify-content: center;
+          z-index: 999;
         }
 
-        .contact-check-container {
-          position: relative;
-          border: 2px solid #ddd;
-          border-radius: 12px;
+        .modal {
+          background: white;
           padding: 2rem;
-          max-width: 400px;
-          text-align: center;
-          font-family: sans-serif;
-          background-color: #fafafa;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-          animation: popIn 0.2s ease forwards;
-        }
-
-        .close-btn {
-          position: absolute;
-          top: 0.5rem;
-          right: 0.5rem;
-          background: transparent;
-          border: none;
-          font-size: 1.5rem;
-          cursor: pointer;
-          color: #333;
-        }
-
-        @keyframes popIn {
-          from {
-            transform: scale(0.9);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-
-        span {
+          border-radius: 12px;
           position: relative;
-          font-weight: bold;
-          color: #ff6f00;
+          text-align: center;
+          max-width: 400px;
+          font-family: sans-serif;
         }
 
-        .animal-gif {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          height: 85%;
-          z-index: -1; /* atrás do span */
+        .modal span {
+          font-weight: bold;
         }
 
         .buttons {
@@ -144,34 +98,46 @@ export default function ContactCheck({
           margin-top: 1rem;
         }
 
-        button.yes {
+        .buttons button {
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 8px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .yes {
           background-color: #28a745;
           color: white;
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          font-weight: bold;
-          border: none;
-          cursor: pointer;
         }
 
-        button.no {
+        .no {
           background-color: #dc3545;
           color: white;
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          font-weight: bold;
+        }
+
+        .close {
+          position: absolute;
+          top: 8px;
+          right: 12px;
           border: none;
+          background: none;
+          font-size: 1.5rem;
           cursor: pointer;
         }
 
-        .contact-box h3 {
-          margin-bottom: 1rem;
-        }
-
-        .contact-box p {
-          margin: 0.3rem 0;
+        .contact-modal {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          padding: 1.5rem;
+          border-radius: 12px;
+          z-index: 1000;
+          text-align: center;
         }
       `}</style>
-    </div>
+    </>
   );
 }

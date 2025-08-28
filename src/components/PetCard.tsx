@@ -5,7 +5,6 @@ interface PetCardProps {
   id: string;
   name: string;
   photoUrl: string;
-  photoComponent?: string[];
   weight: string;
   age: string;
   breed: string;
@@ -55,7 +54,7 @@ export default function PetCard({
           <strong>Email:</strong> {email}
         </p>
         <p>
-          <strong>Telefone:</strong> {phone}
+          <strong>Contato:</strong> {phone}
         </p>
         <p>
           <strong>Endereço:</strong> {address}
