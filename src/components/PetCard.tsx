@@ -16,7 +16,6 @@ interface PetCardProps {
 }
 
 export default function PetCard({
-  id,
   name,
   photoUrl,
   weight,

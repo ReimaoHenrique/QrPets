@@ -6,7 +6,7 @@ import path from "path";
 import { useState } from "react";
 import ContactCheck from "../../components/ContactCheck";
 import styles from "./uuid.module.css";
-
+import Image from "next/image";
 interface Pet {
   id: string;
   name: string;
@@ -60,7 +60,13 @@ export default function PetProfile({ pet }: Props) {
         className={styles.cover}
         style={{ backgroundImage: `url(${pet.coverUrl || pet.photoUrl})` }}
       >
-        <img src={pet.photoUrl} alt={pet.name} className={styles.avatar} />
+        <Image
+          src={pet.photoUrl}
+          alt={pet.name}
+          className={styles.avatar}
+          width={128}
+          height={128}
+        />
       </div>
 
       {/* Conteúdo */}
@@ -147,7 +153,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const filePath = path.join(process.cwd(), "data", "pets", `${uuid}.json`);
     const fileContent = fs.readFileSync(filePath, "utf-8");
     petData = JSON.parse(fileContent);
-  } catch (err) {
+  } catch {
     console.warn(`Pet não encontrado: ${uuid}`);
   }
 

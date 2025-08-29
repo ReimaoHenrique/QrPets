@@ -1,6 +1,6 @@
 // src/components/ContactIcons.tsx
 import React from "react";
-
+import Image from "next/image";
 interface ContactIconsProps {
   email?: string;
   instagram?: string;
@@ -39,7 +39,7 @@ export default function ContactIcons({
   return (
     <span className="contact-icons">
       {email && (
-        <img
+        <Image
           src="/email.png"
           alt="Email"
           onClick={handleEmail}
@@ -47,14 +47,14 @@ export default function ContactIcons({
         />
       )}
       {instagram && (
-        <img
+        <Image
           src="/instagram.png"
           alt="Instagram"
           onClick={handleInstagram}
           title="Abrir Instagram"
         />
       )}
-      <img
+      <Image
         src="/whatsapp.png"
         alt="WhatsApp"
         onClick={handleWhatsApp}

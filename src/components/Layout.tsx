@@ -1,6 +1,6 @@
-import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import React from "react";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,13 +8,13 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const layoutStyle = {
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    minHeight: '100vh',
+    display: "flex",
+    flexDirection: "column" as const,
+    minHeight: "100vh",
   };
 
   const mainStyle = {
-    flex: '1',
+    flex: "1",
   };
 
   return (
