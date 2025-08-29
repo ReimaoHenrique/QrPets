@@ -3,11 +3,11 @@
   "name": "Tea",
   "photoUrl": "/images/tea.jpeg",
   "sex": "female",
-  "photoComponent": [
+  "BlurFadeImage": [
     "/images/tea.jpeg",
     "/images/tea.jpeg",
     "/images/tea.jpeg",
-    "/images/tea4jpeg",
+    "/images/tea.jpeg",
     "/images/tea.jpeg"
   ],
   "weight": "7kg",

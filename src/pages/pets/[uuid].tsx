@@ -4,9 +4,11 @@ import Head from "next/head";
 import fs from "fs";
 import path from "path";
 import { useState } from "react";
-import ContactCheck from "../../components/ContactCheck";
+import ContactCheck from "../../components/ContactCheck/ContactCheck";
+import { BlurFade } from "@/components/magicui/blur-fade"; // import do MagicUI
 import styles from "./uuid.module.css";
 import Image from "next/image";
+
 interface Pet {
   id: string;
   name: string;
@@ -24,6 +26,7 @@ interface Pet {
   photos?: string[];
   sex: "male" | "female";
   insta?: string;
+  BlurFadeImage?: string[];
 }
 
 interface Props {
@@ -130,6 +133,26 @@ export default function PetProfile({ pet }: Props) {
             </div>
           )}
         </div>
+
+        {/* Nova Seção: Nossos Momentos */}
+        {pet.BlurFadeImage && pet.BlurFadeImage.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-2xl font-bold mb-4">Nossos Momentos</h2>
+            <div className="columns-2 gap-4 sm:columns-3">
+              {pet.BlurFadeImage.map((src, idx) => (
+                <BlurFade key={idx} delay={0.4 + idx * 0.05} inView>
+                  <Image
+                    src={src}
+                    alt={`Momento ${idx + 1}`}
+                    width={300}
+                    height={300}
+                    className="mb-4 w-full rounded-lg object-cover"
+                  />
+                </BlurFade>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </>
   );
