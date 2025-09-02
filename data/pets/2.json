@@ -2,7 +2,7 @@
   "id": "2",
   "name": "Flisko",
   "photoUrl": "/images/Flisko_perfil.jpeg",
-  "sex": "female",
+  "sex": "male",
   "BlurFadeImage": [
     "/images/Flisko.jpeg",
     "/images/Flisko0.jpeg",
@@ -13,7 +13,7 @@
   "breed": "pinsche",
   "phone": "(71)92076895",
   "insta": "henriquereimao",
-  "notes": "Fofa",
+  "notes": "Fofo",
   "themeColor": "#FF6F00",
   "actionLabel": "Ver mais"
 }

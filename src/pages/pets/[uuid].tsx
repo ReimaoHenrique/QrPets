@@ -44,9 +44,39 @@ export default function PetProfile({ pet }: Props) {
     <>
       <Head>
         <title>{pet.name ? `${pet.name} - Perfil` : "Pet - Perfil"}</title>
+
+        {/* --- Open Graph (WhatsApp, Facebook, Insta) --- */}
         <meta
           property="og:title"
           content={pet.name ? `Conheça ${pet.name}` : "Conheça esse pet"}
+        />
+        <meta
+          property="og:description"
+          content={pet.notes || "Adote amor, adote um pet 🐾"}
+        />
+        <meta
+          property="og:image"
+          content={`https://www.qrpets.info${pet.photoUrl}`}
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://www.qrpets.info/pets/${pet.id}`}
+        />
+
+        {/* --- Twitter Cards (Telegram, Twitter, Discord) --- */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={pet.name ? `Conheça ${pet.name}` : "Conheça esse pet"}
+        />
+        <meta
+          name="twitter:description"
+          content={pet.notes || "Adote amor, adote um pet 🐾"}
+        />
+        <meta
+          name="twitter:image"
+          content={`https://www.qrpets.info${pet.photoUrl}`}
         />
       </Head>
 
