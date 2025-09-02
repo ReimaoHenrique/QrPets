@@ -79,8 +79,8 @@ export default function PetProfile({ pet }: Props) {
           content={`https://www.qrpets.info${pet.photoUrl}`}
         />
       </Head>
-
       <ContactCheck
+        photoUrl={pet.photoUrl} // <-- aqui, pega a URL da foto do pet
         name={pet.name}
         sex={pet.sex}
         email={pet.email}

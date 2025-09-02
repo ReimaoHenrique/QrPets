@@ -1,37 +1,49 @@
-.contact-icons {
+/* Container dos contatos */
+.container {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  padding: 2rem;
-  border-radius: 20px;
-  position: relative;
-  z-index: 1;
-
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-}
-
-.contact-icons::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
-  height: 85%;
-  background-size: cover;
-  background-position: center bottom;
-  opacity: 0.25;
-  z-index: -1;
-  border-radius: 20px;
 }
 
-.contact-icons img {
+/* Botão de contato */
+.contactButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background-color: #000000c9;
+  color: #fff;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: flex-start;
 }
 
-.contact-icons img:hover {
-  transform: scale(1.2);
+.contactButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Ícones dentro dos botões */
+.contactButton svg {
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .contactButton {
+    padding: 10px 14px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .contactButton svg {
+    width: 18px;
+    height: 18px;
+  }
 }

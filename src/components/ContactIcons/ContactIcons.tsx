@@ -1,25 +1,20 @@
-import React from "react";
-import Image from "next/image";
+import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import styles from "./ContactIcons.module.css";
 
 interface ContactIconsProps {
   email?: string;
   instagram?: string;
   whatsapp?: string;
-  backgroundImage?: string; // url da imagem do pet
 }
 
 export default function ContactIcons({
   email,
   instagram,
   whatsapp,
-  backgroundImage,
 }: ContactIconsProps) {
   const handleWhatsApp = () => {
-    const waLink = whatsapp
-      ? `https://wa.me/${whatsapp.replace(/\D/g, "")}`
-      : `https://web.whatsapp.com/`;
-    window.open(waLink, "_blank");
+    if (!whatsapp) return;
+    window.open(`https://wa.me/${whatsapp.replace(/\D/g, "")}`, "_blank");
   };
 
   const handleEmail = () => {
@@ -29,53 +24,38 @@ export default function ContactIcons({
 
   const handleInstagram = () => {
     if (!instagram) return;
-    window.open(
-      instagram.startsWith("http")
-        ? instagram
-        : `https://instagram.com/${instagram}`,
-      "_blank"
-    );
+    const igLink = instagram.startsWith("http")
+      ? instagram
+      : `https://instagram.com/${instagram}`;
+    window.open(igLink, "_blank");
   };
 
   return (
-    <span
-      className={styles["contact-icons"]}
-      style={
-        {
-          "--bg-image": backgroundImage ? `url(${backgroundImage})` : "none",
-        } as React.CSSProperties
-      }
-    >
+    <div className={styles.container}>
       {email && (
-        <Image
-          width={50}
-          height={50}
-          src="/email.png"
-          alt="Email"
+        <button
+          className={`${styles.contactButton} ${styles.emailButton}`}
           onClick={handleEmail}
-          title="Enviar Email"
-        />
-      )}
-      {instagram && (
-        <Image
-          width={50}
-          height={50}
-          src="/instagram.png"
-          alt="Instagram"
-          onClick={handleInstagram}
-          title="Abrir Instagram"
-        />
+        >
+          <FaEnvelope size={20} /> {email}
+        </button>
       )}
       {whatsapp && (
-        <Image
-          width={50}
-          height={50}
-          src="/whatsapp.png"
-          alt="WhatsApp"
+        <button
+          className={`${styles.contactButton} ${styles.whatsappButton}`}
           onClick={handleWhatsApp}
-          title="Abrir WhatsApp"
-        />
+        >
+          <FaWhatsapp size={20} /> {whatsapp}
+        </button>
       )}
-    </span>
+      {instagram && (
+        <button
+          className={`${styles.contactButton} ${styles.instagramButton}`}
+          onClick={handleInstagram}
+        >
+          <FaInstagram size={20} /> {instagram}
+        </button>
+      )}
+    </div>
   );
 }

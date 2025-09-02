@@ -1,82 +1,140 @@
-.modalOverlay {
+/* Overlay do modal */
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.801);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Modal */
+.modal {
+  background: #ff6f00; /* fundo laranja */
+  color: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Avatar do pet */
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #7cdacc;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rounded {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Info do pet */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 8px;
+}
+
+/* Container dos contatos */
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0 8px;
+}
+
+/* Botões de contato */
+.contactButton {
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal {
-  background: white;
-  padding: 2rem;
+  gap: 8px;
+  padding: 12px 18px;
   border-radius: 12px;
-  position: relative;
-  text-align: center;
-  max-width: 400px;
-  font-family: sans-serif;
-}
-
-.pronoun {
-  font-weight: bold;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.buttons button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.8); /* fundo escuro */
+  color: #fff;
+  font-weight: 500;
   cursor: pointer;
-}
-
-.yes {
-  background-color: #28a745;
-  color: white;
-}
-
-.no {
-  background-color: #dc3545;
-  color: white;
-}
-
-.close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border: none;
-  background: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: black; /* deixa o × preto */
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: flex-start;
 }
 
-.contactModal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white; /* mantém branco limpo */
-  z-index: 1000;
-  text-align: center;
+.contactButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-.contactModal .close {
-  position: absolute;
-  top: 8px;
-  right: 8px; /* canto direito superior */
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: black;
+/* Ícones dentro dos botões */
+.contactButton svg {
+  flex-shrink: 0;
+}
+
+/* cores individuais para cada tipo */
+.emailButton {
+  background-color: rgba(52, 152, 219, 0.9); /* azul */
+}
+.whatsappButton {
+  background-color: rgba(37, 211, 102, 0.9); /* verde */
+}
+.instagramButton {
+  background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  ); /* degradê instagram */
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .modal {
+    padding: 16px;
+  }
+  .avatar {
+    width: 70px;
+    height: 70px;
+  }
+  .contacts {
+    padding: 0 4px;
+  }
+  .contactButton {
+    padding: 10px 14px;
+    font-size: 14px;
+    gap: 6px;
+  }
+  .contactButton svg {
+    width: 18px;
+    height: 18px;
+  }
 }

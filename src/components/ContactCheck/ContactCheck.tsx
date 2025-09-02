@@ -1,6 +1,7 @@
 // src/components/ContactCheck.tsx
-import { useState, useEffect } from "react";
-import ContactIcons from "../ContactIcons/ContactIcons";
+import { useState } from "react";
+import Image from "next/image";
+import ContactIcons from "../ContactIcons/ContactIcons"; // seu componente com react-icons
 import styles from "./ContactCheck.module.css";
 
 interface ContactCheckProps {
@@ -9,73 +10,58 @@ interface ContactCheckProps {
   email?: string;
   instagram?: string;
   whatsapp?: string;
+  photoUrl?: string;
+  ownerName?: string;
 }
 
 export default function ContactCheck({
+  name,
   sex,
   email,
   instagram,
   whatsapp,
+  photoUrl,
+  ownerName,
 }: ContactCheckProps) {
-  const [showQuestion, setShowQuestion] = useState(false);
-  const [answeredYes, setAnsweredYes] = useState(false);
-
+  const [show, setShow] = useState(true);
   const pronoun = sex === "female" ? "perdida" : "perdido";
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowQuestion(true), 75);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!sex) return null;
+  if (!show) return null;
 
   return (
-    <>
-      {showQuestion && !answeredYes && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <button
-              className={styles.close}
-              onClick={() => setShowQuestion(false)}
-            >
-              ×
-            </button>
-            <p>
-              Eu estou <span className={styles.pronoun}>{pronoun}</span>?
-            </p>
-            <div className={styles.buttons}>
-              <button
-                className={styles.yes}
-                onClick={() => setAnsweredYes(true)}
-              >
-                Sim
-              </button>
-              <button
-                className={styles.no}
-                onClick={() => setShowQuestion(false)}
-              >
-                Não
-              </button>
-            </div>
-          </div>
+    <div className={styles.overlay} onClick={() => setShow(false)}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.avatar}>
+          {photoUrl ? (
+            <Image
+              src={photoUrl}
+              alt={name}
+              width={100}
+              height={100}
+              className={styles.rounded}
+            />
+          ) : (
+            "🐾"
+          )}
         </div>
-      )}
 
-      {answeredYes && (
-        <div className={styles.contactModal}>
-          <button
-            className={styles.close}
-            onClick={() => setAnsweredYes(false)}
-          >
-            ×
-          </button>
+        <div className={styles.info}>
+          <strong>Eu sou {name}</strong>
+          <p>Estou {pronoun}?</p>
+          <p>Aqui estão os dados do meu dono:</p>
+
+          {/* Contatos com ícones */}
           <ContactIcons
             email={email}
             instagram={instagram}
             whatsapp={whatsapp}
           />
+
+          {ownerName && <p>Nome do dono: {ownerName}</p>}
+
+          <small>(Clique fora ou aqui para fechar)</small>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
