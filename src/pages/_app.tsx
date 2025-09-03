@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="robots" content="index, follow" />
 
         {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
         <link
           rel="icon"
           type="image/png"

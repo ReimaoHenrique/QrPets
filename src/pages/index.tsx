@@ -19,7 +19,7 @@ const HomePage = () => {
         />
         <meta
           property="og:image"
-          content="https://qrpets.info/images/produtos/logo.png"
+          content="https://qrpets.info/QrPetesLogo.svg"
         />
         <meta property="og:url" content="https://qrpets.info/" />
         <meta property="og:type" content="website" />
@@ -28,7 +28,7 @@ const HomePage = () => {
       <main className={styles.container}>
         <div className={styles.hero}>
           <Image
-            src="/images/produtos/logo.png"
+            src="QrPetesLogo.svg"
             alt="QR Pets Logo"
             width={150}
             height={150}
