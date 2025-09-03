@@ -16,7 +16,7 @@ export default function Contact() {
         />
         <meta
           property="og:image"
-          content="https://qrpets.info/QrPetesLogo.svg"
+          content="https://qrpets.info/QrPetesLogo.png"
         />
         <meta property="og:url" content="https://qrpets.info/contact" />
         <meta property="og:type" content="website" />
