@@ -1,0 +1,11 @@
+# Bloqueia crawlers que não queremos
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+
+# Permite tudo o resto
+Allow: /
+
+# Sitemap para IA e motores de busca
+Sitemap: https://qrpets.info/sitemap.xml
