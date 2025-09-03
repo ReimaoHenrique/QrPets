@@ -1,31 +1,27 @@
-import styles from '../styles/Contact.module.css';
+import Head from "next/head";
 
-const ContactPage = () => {
+export default function Contact() {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Fale Conosco</h1>
-      <div className={styles.formWrapper}>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Nome</label>
-            <input type="text" id="name" name="name" className={styles.input} required />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" className={styles.input} required />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="message">Mensagem</label>
-            <textarea id="message" name="message" className={styles.textarea} required></textarea>
-          </div>
-
-          <button type="submit" className={styles.button}>Enviar</button>
-        </form>
-      </div>
-    </div>
+    <>
+      <Head>
+        <title>Contato - QR Pets</title>
+        <meta
+          name="description"
+          content="Entre em contato com a QR Pets para dúvidas e suporte."
+        />
+        <meta property="og:title" content="Contato - QR Pets" />
+        <meta
+          property="og:description"
+          content="Entre em contato com a QR Pets para dúvidas e suporte."
+        />
+        <meta
+          property="og:image"
+          content="https://qrpets.info/images/produtos/logo.png"
+        />
+        <meta property="og:url" content="https://qrpets.info/contact" />
+        <meta property="og:type" content="website" />
+      </Head>
+      <main>{/* Conteúdo da Contact */}</main>
+    </>
   );
-};
-
-export default ContactPage;
+}

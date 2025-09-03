@@ -1,9 +1,7 @@
-import React from "react";
 import Head from "next/head";
 import ProductCard from "../components/ProductCard/ProductCard";
 
 const phoneNumber = "5571992076895";
-
 const products = [
   {
     id: 1,
@@ -19,19 +17,19 @@ const products = [
   },
 ];
 
-const ProductsLayout = () => {
+export default function Shop() {
   return (
     <>
       <Head>
         <title>Shop - QR Pets</title>
         <meta
           name="description"
-          content="Compre gadgets e acessórios para pets com QR Codes inteligentes"
+          content="Compre gadgets e acessórios para pets com QR Codes inteligentes."
         />
         <meta property="og:title" content="Shop - QR Pets" />
         <meta
           property="og:description"
-          content="Compre gadgets e acessórios para pets"
+          content="Compre gadgets e acessórios para pets."
         />
         <meta
           property="og:image"
@@ -40,13 +38,13 @@ const ProductsLayout = () => {
         <meta property="og:url" content="https://qrpets.info/shop" />
         <meta property="og:type" content="website" />
       </Head>
-
       <main>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             gap: "20px",
+            flexWrap: "wrap",
             padding: "40px 0",
           }}
         >
@@ -63,6 +61,4 @@ const ProductsLayout = () => {
       </main>
     </>
   );
-};
-
-export default ProductsLayout;
+}
