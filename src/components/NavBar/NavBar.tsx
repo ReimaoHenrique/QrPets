@@ -18,6 +18,7 @@ const NavBar = () => {
             priority
           />
         </Link>
+        <h1>Qr Petes</h1>
       </div>
       <div className={styles.links}>
         <Link href="/" className={router.pathname === "/" ? styles.active : ""}>

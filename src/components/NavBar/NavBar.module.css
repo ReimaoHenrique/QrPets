@@ -13,6 +13,17 @@
   font-weight: bold;
   font-size: 1.5rem;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espaço entre o logo e o h1 */
+}
+
+.logo h1 {
+  margin: 0;
+  white-space: nowrap; /* impede quebra de linha */
+  font-size: 1.5rem;
+}
 
 .links a {
   margin: 0 1rem;
