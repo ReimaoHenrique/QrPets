@@ -1,7 +1,5 @@
 .nav {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #6a0dad;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +22,8 @@
   transition: color 0.2s;
 }
 
-.links a:hover, .links a.active {
+.links a:hover,
+.links a.active {
   color: var(--primary-color);
   font-weight: bold;
 }
