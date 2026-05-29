@@ -1,0 +1,25 @@
+steps:
+  # 1. Buildar a imagem Docker usando o Dockerfile que está no GitHub
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', 
+      '-t', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA', 
+      '.'
+    ]
+
+  # 2. Enviar a imagem para o Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA']
+
+  # 3. Atualizar o Cloud Run com a nova imagem buildada
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'run', 'deploy', 'meu-servidor-node',
+      '--image', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA',
+      '--region', 'southamerica-east1',
+      '--allow-unauthenticated'
+    ]
+
+images:
+  - 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA'
