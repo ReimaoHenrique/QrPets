@@ -8,4 +8,4 @@ RUN pnpm run build
 EXPOSE 3000
 ENV PORT=3000
 CMD ["pnpm", "start"]
-'@ | save -f Dockerfile
+'@ | save -f Dockerfilec
