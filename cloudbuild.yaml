@@ -1,25 +1,19 @@
 steps:
-  # 1. Buildar a imagem Docker usando o Dockerfile que está no GitHub
+  # 1. Build da imagem Docker usando o Dockerfile do GitHub salvando como :latest
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build', 
-      '-t', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA', 
+      '-t', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:latest', 
       '.'
     ]
 
-  # 2. Enviar a imagem para o Artifact Registry
+  # 2. Envia a imagem :latest para o Artifact Registry do Google
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA']
-
-  # 3. Atualizar o Cloud Run com a nova imagem buildada
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args: [
-      'run', 'deploy', 'meu-servidor-node',
-      '--image', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA',
-      '--region', 'southamerica-east1',
-      '--allow-unauthenticated'
-    ]
+    args: ['push', 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:latest']
 
 images:
-  - 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:$COMMIT_SHA'
+  - 'southamerica-east1-docker.pkg.dev/lucky-era-497723-q0/imagens-node/qr-pets:latest'
+
+# CORREÇÃO DO ERRO ANTERIOR DE LOGS:
+options:
+  logging: CLOUD_LOGGING_ONLY
