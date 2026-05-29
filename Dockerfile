@@ -2,28 +2,27 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Ativa o corepack para o Node identificar o pnpm automaticamente
+# Ativa o corepack para gerenciar o pnpm automaticamente
 RUN corepack enable pnpm
 
-# Copia os arquivos de configuração de dependências
+# Copia os arquivos de mapeamento de pacotes
 COPY package*.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
 
-# Instala todas as dependências do projeto
-RUN pnpm install
+# CORREÇÃO DO ERRO DO PNPM V11: Permite o build das dependências nativas (Tailwind/Sharp)
+RUN pnpm install --only-built-dependencies
 
-# Copia o restante do código da sua aplicação
+# Copia o resto do código do projeto
 COPY . .
 
-# Desabilita a telemetria do Next.js durante o build (deixa mais rápido)
+# Desabilita telemetria do Next.js para acelerar o build
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Executa o build do Next.js
+# Compila o projeto Next.js
 RUN pnpm run build
 
-# O Cloud Run vai escutar a porta 3000 que configuramos no Terraform
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Comando para iniciar o servidor Next.js em produção
+# Inicia o servidor Next.js em produção
 CMD ["pnpm", "start"]
